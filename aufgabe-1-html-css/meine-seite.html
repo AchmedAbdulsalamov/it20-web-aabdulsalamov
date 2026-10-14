@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine Seite</title>
+    <style>
+        :root {
+            --primary: #005a9c;
+            --accent: #eaf4ff;
+            --text: #1c1c1c;
+            --border: #d0dce8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f9fc;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 2rem 1.5rem;
+        }
+
+        h1 {
+            margin: 0 0 1rem;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .karten {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .karte {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            flex: 1;
+        }
+
+        h2 {
+            color: var(--primary);
+        }
+
+        ul {
+            padding-left: 1.25rem;
+        }
+
+        .bild-box {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+        }
+
+        footer {
+            background: #dfeefb;
+            text-align: center;
+            padding: 1rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        @media (max-width: 700px) {
+            .karten {
+                display: block;
+            }
+
+            .karte {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Meine Seite</h1>
+        <nav aria-label="Hauptnavigation">
+            <a href="#hobbys">Hobbys</a>
+            <a href="#ueber-mich">Über mich</a>
+            <a href="#kontakt">Kontakt</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="karten">
+            <section id="hobbys" class="karte">
+                <h2>Meine Hobbys</h2>
+                <ul>
+                    <li>ne</li>
+                    <li>2te</li>
+                    <li>3te list</li>
+                </ul>
+            </section>
+
+            <section id="ueber-mich" class="karte">
+                <h2>Über mich</h2>
+                <p>blu bli bla blo ble ble ble</p>
+                <div class="bild-box">
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.kbTHzQaSU56cUDfBu8offQAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="katze">
+                </div>
+            </section>
+        </div>
+
+        <section id="kontakt" class="karte">
+            <h2>Kontakt</h2>
+            <p>hier ist kontakt</p>
+            <p>aabdulsalamov2020@brgkepler.at</p>
+        </section>
+    </main>
+
+    <footer>
+        footer meiner seite
+    </footer>
+</body>
+</html>
