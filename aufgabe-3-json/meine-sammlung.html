@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meine Sammlung</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      color: #333;
+      background-color: #f7f9fc;
+    }
+
+    h1, h2 {
+      color: #1f2937;
+    }
+
+    #suche {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      box-sizing: border-box;
+      margin-bottom: 8px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    #suche:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    #anzahl {
+      color: #64748b;
+      font-size: 0.95rem;
+      margin: 0 0 1.25rem 0;
+    }
+
+    #liste {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 2rem;
+    }
+
+    .karte {
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      background: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .karte:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .karte h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.15rem;
+      color: #0f172a;
+    }
+
+    .karte p {
+      margin: 4px 0;
+      color: #475569;
+      font-size: 0.95rem;
+    }
+
+    .karte .bewertung {
+      font-weight: 600;
+      color: #d97706;
+    }
+
+    #rohdaten {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 14px;
+      color: #1e293b;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎮 Meine Spielesammlung</h1>
+
+  <input id="suche" type="text" placeholder="Suchen …">
+  <p id="anzahl"></p>
+
+  <div id="liste"></div>
+
+  <h2>JSON-Rohdaten</h2>
+  <pre id="rohdaten"></pre>
+
+  <script>
+    // 1. Array mit mindestens 5 Einträgen (jeweils mindestens 3 Felder)
+    const daten = [
+      { titel: "Minecraft", kategorie: "Sandbox", bewertung: 9 },
+      { titel: "Celeste", kategorie: "Platformer", bewertung: 10 },
+      { titel: "Hollow Knight", kategorie: "Metroidvania", bewertung: 10 },
+      { titel: "The Witcher 3", kategorie: "Rollenspiel", bewertung: 9.5 },
+      { titel: "Portal 2", kategorie: "Puzzle", bewertung: 10 },
+      { titel: "Hades", kategorie: "Rogue-like", bewertung: 9.5 }
+    ];
+
+    const listeEl = document.getElementById("liste");
+    const sucheEl = document.getElementById("suche");
+    const anzahlEl = document.getElementById("anzahl");
+    const rohdatenEl = document.getElementById("rohdaten");
+
+    // 2. Funktion zur Darstellung der Liste
+    function zeigeListe(eintraege) {
+      listeEl.innerHTML = eintraege
+        .map(e => `
+          <div class="karte">
+            <h3>${e.titel}</h3>
+            <p><strong>Kategorie:</strong> ${e.kategorie}</p>
+            <p class="bewertung">⭐ Bewertung: ${e.bewertung}/10</p>
+          </div>
+        `)
+        .join("");
+
+      // Freiwillig: Anzahl der Treffer anzeigen
+      anzahlEl.textContent = `${eintraege.length} von ${daten.length} Einträgen`;
+    }
+
+    // 3. Live-Filter: Reagiere auf das input-Event
+    sucheEl.addEventListener("input", () => {
+      const suchtext = sucheEl.value.toLowerCase().trim();
+      const gefiltert = daten.filter(e => e.titel.toLowerCase().includes(suchtext));
+      zeigeListe(gefiltert);
+    });
+
+    // 4. Rohdaten im <pre>-Element anzeigen
+    rohdatenEl.textContent = JSON.stringify(daten, null, 2);
+
+    // 5. Initiale Anzeige beim Laden der Seite
+    zeigeListe(daten);
+  </script>
+</body>
+</html>
